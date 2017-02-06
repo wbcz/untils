@@ -118,6 +118,8 @@ let deployServer = http.createServer(function(request, response) {
       
       //测试一下哟
       sendMail('测试发邮件', '<p>Hello world!</p>');
+      //只提交这个
+  
     }())
     
     response.writeHead(200, {'Content-Type': 'text/html'});
