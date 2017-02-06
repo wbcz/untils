@@ -121,7 +121,6 @@ let deployServer = http.createServer(function(request, response) {
       //只提交这个
       //不提交这个
       //这个...
-      //提交了记录，回滚了，记录还在吗
     }())
     
     response.writeHead(200, {'Content-Type': 'text/html'});
