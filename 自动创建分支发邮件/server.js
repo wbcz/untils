@@ -3,7 +3,10 @@ const exec = require('exec');
 const requester = require('request');
 const Promise = require('bluebird');
 const path = require('path');
+<<<<<<< HEAD
 const config = require('./config');
+=======
+>>>>>>> 31be9e2db3a565bc626225401928aebc1d755af5
 const until = require('./until');
 const request = Promise.promisify(require('request'));
 const saveFile = path.join(__dirname, './releaseVersion.txt');
@@ -116,8 +119,7 @@ let deployServer = http.createServer(function(request, response) {
       //测试一下哟
       sendMail('测试发邮件', '<p>Hello world!</p>');
     }())
-
-
+    
     response.writeHead(200, {'Content-Type': 'text/html'});
     response.end('yes');
 
