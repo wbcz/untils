@@ -41,19 +41,18 @@ class Slider {
 	}
 
 	goIndex(n) {
-
 		let index = this.index
-        let oLis = this.outer.getElementsByTagName('li')
-        let len = oLis.length
-        let cIndex
+		let oLis = this.outer.getElementsByTagName('li')
+		let len = oLis.length
+		let cIndex
 
-        if(typeof n == 'number') cIndex = index
-        else cIndex = index + n*1
+		if(typeof n == 'number') cIndex = index
+		else cIndex = index + n*1
 
-        if(cIndex > len-1) cIndex = len - 1
-        if(cIndex < 0) cIndex = 0
+		if(cIndex > len-1) cIndex = len - 1
+		if(cIndex < 0) cIndex = 0
 
-        this.index = cIndex
+		this.index = cIndex
 
 		oLis[cIndex].style.webkitTransition ='-webkit-transform 0.2s ease-out'
 		oLis[cIndex-1] && (oLis[cIndex-1].style.webkitTransition = '-webkit-transform 0.2s ease-out')
