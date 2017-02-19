@@ -41,19 +41,18 @@ class Slider {
 	}
 
 	goIndex(n) {
-
 		let index = this.index
-        let oLis = this.outer.getElementsByTagName('li')
-        let len = oLis.length
-        let cIndex
+		let oLis = this.outer.getElementsByTagName('li')
+		let len = oLis.length
+		let cIndex
 
-        if(typeof n == 'number') cIndex = index
-        else cIndex = index + n*1
+		if(typeof n == 'number') cIndex = index
+		else cIndex = index + n*1
 
-        if(cIndex > len-1) cIndex = len - 1
-        if(cIndex < 0) cIndex = 0
+		if(cIndex > len-1) cIndex = len - 1
+		if(cIndex < 0) cIndex = 0
 
-        this.index = cIndex
+		this.index = cIndex
 
 		oLis[cIndex].style.webkitTransition ='-webkit-transform 0.2s ease-out'
 		oLis[cIndex-1] && (oLis[cIndex-1].style.webkitTransition = '-webkit-transform 0.2s ease-out')
@@ -100,28 +99,28 @@ class Slider {
 			let endTime = new Date() * 1
 			let oLis = outer.getElementsByTagName('li')
 
-			if(endTime - self.starTime > 300) {
-                if(self.offsetX >= boundary){
-                    self.goIndex('-1');
-                }else if(self.offsetX < 0 && self.offsetX < -boundary){
-                    self.goIndex('+1');
-                }else{
-                    self.goIndex('0');
-                }
+			if(endTime - self.starTime > 200) {
+				if(self.offsetX >= boundary){
+					self.goIndex('-1');
+				}else if(self.offsetX < 0 && self.offsetX < -boundary){
+					self.goIndex('+1');
+				}else{
+					self.goIndex('0');
+				}
 			} else {
-            	if(self.offsetX > 50){
-                    self.goIndex('-1');
-                }else if(self.offsetX < -50){
-                    self.goIndex('+1');
-                }else{
-                    self.goIndex('0');
-                }
+				if(self.offsetX > 60){
+					self.goIndex('-1');
+				}else if(self.offsetX < -60){
+					self.goIndex('+1');
+				}else{
+					self.goIndex('0');
+				}
 			}
 		}
 
-        outer.addEventListener('touchstart', handlerStart);
-        outer.addEventListener('touchmove', handlerMove);
-        outer.addEventListener('touchend', handlerEnd);
+		outer.addEventListener('touchstart', handlerStart);
+		outer.addEventListener('touchmove', handlerMove);
+		outer.addEventListener('touchend', handlerEnd);
 	}
 }
 
