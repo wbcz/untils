@@ -46,7 +46,7 @@ class Slider {
 		let len = oLis.length
 		let cIndex
 
-		if(typeof n == 'number') cIndex = index
+		if(typeof n == 'number') cIndex = index 
 		else cIndex = index + n*1
 
 		if(cIndex > len-1) cIndex = len - 1
@@ -103,7 +103,7 @@ class Slider {
 				if(self.offsetX >= boundary){
 					self.goIndex('-1');
 				}else if(self.offsetX < 0 && self.offsetX < -boundary){
-					self.goIndex('+1');
+					self.goIndex('1');
 				}else{
 					self.goIndex('0');
 				}

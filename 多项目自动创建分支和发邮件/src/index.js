@@ -3,9 +3,9 @@ const untils = require('./untils');
 const branch = require('./branch');
 const sendEmail = require('./mail');
 
-function start() {
+(function start() {
     console.log('start ...')
-    if(untils.isExist()) {
+    untils.isExist().then(function(data) {
         branch('clone')
         .then(function() {
             console.log('----------- all projects clone over -----------');
@@ -21,6 +21,7 @@ function start() {
                 });
             })
         })
-    }
+        
+    })
     sendMail('test send mail', '<p>Hello world!</p>');
-}
+})()

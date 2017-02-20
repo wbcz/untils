@@ -24,10 +24,12 @@
 			overflow: hidden;
 		}
 		li {
+			//position属性用太多会导致浏览器崩溃
 			position: absolute;
 			display: -webkit-box;
 			-webkit-box-align: center;
 			-webkit-box-align: center;
+			-webkit-backface-visibility:hidden;//移动端闪白
 		}
 	</style>
 	<script src="./core.js"></script>
