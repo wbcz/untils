@@ -101,27 +101,27 @@ class Slider {
 
 			if(endTime - self.starTime > 200) {
 				if(self.offsetX >= boundary){
-					self.goIndex('-1');
+					self.goIndex('-1')
 				}else if(self.offsetX < 0 && self.offsetX < -boundary){
-					self.goIndex('1');
+					self.goIndex('1')
 				}else{
-					self.goIndex('0');
+					self.goIndex('0')
 				}
 			} else {
 				if(self.offsetX > 60){
-					self.goIndex('-1');
+					self.goIndex('-1')
 				}else if(self.offsetX < -60){
-					self.goIndex('+1');
+					self.goIndex('+1')
 				}else{
-					self.goIndex('0');
+					self.goIndex('0')
 				}
 			}
 		}
 
-		outer.addEventListener('touchstart', handlerStart);
-		outer.addEventListener('touchmove', handlerMove);
-		outer.addEventListener('touchend', handlerEnd);
+		outer.addEventListener('touchstart', handlerStart)
+		outer.addEventListener('touchmove', handlerMove)
+		outer.addEventListener('touchend', handlerEnd)
 	}
 }
 
-window.Slider = Slider;
+window.Slider = Slider

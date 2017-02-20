@@ -4,9 +4,7 @@ const Promise = require('bluebird');
 const exec = require('child_process').exec;
 const projects = require('./../config/projects');
 const untils = require('./untils');
-let currentPath = __dirname;
 let branchTime = untils.branchTimeNumber();
-currentPath = currentPath.search(/\/$/) > -1 ? currentPath : currentPath + '/';
 
 function getRequestPros(requestCloneProjects=[]) {
     for(let proName in projects) {
@@ -102,6 +100,9 @@ function syncCommand(command, method, proName) {
 }
 
 function execCommand(command, method, proName, cb) {
+    let currentPath = __dirname;
+    currentPath = currentPath.search(/\/$/) > -1 ? currentPath : currentPath + '/';
+    
     if(method !== 'clone' && method !== 'delete') {
         currentPath = __dirname + '/' + proName+'/';
     }
