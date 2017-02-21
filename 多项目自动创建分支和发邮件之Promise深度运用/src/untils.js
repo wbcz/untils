@@ -5,32 +5,30 @@ const saveFile = path.join(__dirname, './version.txt');
 
 //create release branch number
 function branchTimeNumber(sysmbol= "") {
+    
     let timestamp = new Date(Date.now());
     return formDate(timestamp, sysmbol);
 }
 
 function toNum (num) {
+
     return num <= 9 ? '0' + num: num;
 }
 
 function formDate(timestamp, sysmbol) {
+
     return timestamp.getFullYear() + sysmbol +(toNum(timestamp.getMonth() + 1)) + sysmbol +(toNum(timestamp.getDate())) + sysmbol;
 }
 
 function confirmTime(sendWeek, sendHour) {
 
-    let currentDate = Date.now();
-    let date = new Date(currentDate);
-    let newDate = new Date(currentDate);
-    let startDate;
-    let endDate;
+    let date = new Date();
     if(sendWeek.includes(date.getDay())) {
-        newDate.setHours(0);
-        newDate.setMinutes(0);
-        newDate.setSeconds(0);
-        startDate = newDate.getTime() + sendWeek[0]*3600000;
-        endDate = newDate.getTime() + sendHour[1]*3600000;
-        return ((startDate < currentDate) && (currentDate< endDate)) ? true : false;  
+        if(sendHour.length === 2) {
+            return (date.getHours() >= sendHour[0] && date.getHours() <= sendHour[1]) ? true : false;  
+        } else {
+            return (date.getHours() >= sendHour[0]) ? true : false; 
+        }
     } else {
         return false;
     }
