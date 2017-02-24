@@ -1,9 +1,10 @@
 const config = require('./../config/mail');
 const request = require('request');
 const untils = require('./untils');
+const saveMailFile = path.join(__dirname, './mail.txt');
 
 function sendMail(subject, html) {
-    untils.isExist()
+    untils.isExist(confirm, saveMailFile)
     .then(function(data) {
         if(data) {
             console.log('mail is sending ...')
@@ -20,6 +21,8 @@ function sendMail(subject, html) {
                 smtpTransport.close();
             });
         }
+    }).catch(function(e) {
+        throw Error
     })
 }
 
