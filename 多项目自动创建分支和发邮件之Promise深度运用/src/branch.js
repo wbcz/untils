@@ -44,7 +44,7 @@ function exeProjects(method) {
         co(function*(){
             while(newProjects.length > 0){
                 let project = newProjects.shift()
-                yield exeProjectSync(project, method)
+                yield exeProjectSync(project, method) //这里还可以才采用并发异步优化 yield 包含一个数组就行了 即yield[p1, p2]
             }
             resolve()
         })
