@@ -1,36 +1,36 @@
 const Promise = require('bluebird')
 const fs = require('fs')
-const path = require('path');
-const saveFile = path.join(__dirname, './version.txt');
+const path = require('path')
+const saveFile = path.join(__dirname, './mail.txt')
 
 //create release branch number
 function branchTimeNumber(sysmbol= "") {
     
-    let timestamp = new Date(Date.now());
-    return formDate(timestamp, sysmbol);
+    let timestamp = new Date(Date.now())
+    return formDate(timestamp, sysmbol)
 }
 
 function toNum (num) {
 
-    return num <= 9 ? '0' + num: num;
+    return num <= 9 ? '0' + num: num
 }
 
 function formDate(timestamp, sysmbol) {
 
-    return timestamp.getFullYear() + sysmbol +(toNum(timestamp.getMonth() + 1)) + sysmbol +(toNum(timestamp.getDate())) + sysmbol;
+    return timestamp.getFullYear() + sysmbol +(toNum(timestamp.getMonth() + 1)) + sysmbol +(toNum(timestamp.getDate())) + sysmbol
 }
 
 function confirmTime(sendWeek, sendHour) {
 
-    let date = new Date();
+    let date = Date.now()
     if(sendWeek.includes(date.getDay())) {
         if(sendHour.length === 2) {
-            return (date.getHours() >= sendHour[0] && date.getHours() <= sendHour[1]) ? true : false;  
+            return (date.getHours() >= sendHour[0] && date.getHours() <= sendHour[1]) ? true : false  
         } else {
-            return (date.getHours() >= sendHour[0]) ? true : false; 
+            return (date.getHours() >= sendHour[0]) ? true : false 
         }
     } else {
-        return false;
+        return false
     }
 }
 
@@ -54,29 +54,31 @@ function writeFileAsync(fpath, content) {
     })
 }
 
-function isExist() {
+function isExist(confirm) {
 
     return readFileAsync(saveFile).then(function(data, getFileData = null) {
         try {
-                getFileData = JSON.parse(data);
+                getFileData = JSON.parse(data)
             } catch(e) {
                 getFileData = {}
         }
         return Promise.resolve(getFileData)
     }).then(function(getFileData, res, branchTime) {
 
-        branchTime = branchTimeNumber();
+        branchTime = branchTimeNumber()
         for(var proName in getFileData) {
-            if(getFileData[proName]=== branchTime) res = false;
-            else res = true;
+            if(getFileData[proName]=== branchTime) res = false
+            else res = true
         }
-        if(res) {
-            getFileData['release/'+ branchTime] = branchTime;
-            let saveReleasesFile = JSON.stringify(getFileData);
-            writeFileAsync( saveFile, saveReleasesFile );
+        if(res && confirm) {
+            getFileData['release/'+ branchTime] = branchTime
+            let saveReleasesFile = JSON.stringify(getFileData)
+            writeFileAsync( saveFile, saveReleasesFile )
         }
-        if(res == undefined) res = true;
-        return Promise.resolve(res);
+        if(res == undefined && confirm) res = true
+        else res = false
+
+        return Promise.resolve(res)
     })
 }
 
